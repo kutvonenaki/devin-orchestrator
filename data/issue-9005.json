@@ -1,0 +1,51 @@
+{
+  "demo": true,
+  "internal_id": "issue-9005",
+  "issue_number": 9005,
+  "issue_url": "https://github.com/kutvonenaki/superset/issues/9005",
+  "issue_title": "Chart tooltip shows raw metric name instead of label",
+  "issue_created_at": "2026-05-16T18:41:48.661612+00:00",
+  "status": "completed",
+  "devin_session_id": "demo9005",
+  "devin_session_url": "https://app.devin.ai/sessions/demo9005",
+  "start_time": "2026-05-18T23:41:48.661612+00:00",
+  "end_time": "2026-05-18T23:53:48.661612+00:00",
+  "pr_url": "https://github.com/kutvonenaki/superset/pull/9005",
+  "structured_output": {
+    "pr_url": "https://github.com/kutvonenaki/superset/pull/9005",
+    "root_cause_analysis": "Tooltip formatter read `metric.name` instead of the verbose `metric.label`.",
+    "resolution_summary": "Prefer the human label in the tooltip, fall back to the name.",
+    "files_edited": [
+      "superset-frontend/plugins/plugin-chart-echarts/src/utils/tooltip.ts"
+    ],
+    "file_changes": [
+      {
+        "path": "superset-frontend/plugins/plugin-chart-echarts/src/utils/tooltip.ts",
+        "change_summary": "Use verbose metric label in tooltip."
+      }
+    ],
+    "test_command_run": "python -m pytest tests/unit_tests -q --noconftest",
+    "test_stdout": "============================= test session starts =============================\ncollected 1 item\n\ntests/unit_tests/...::test_demo PASSED                  [100%]\n\n============================== 1 passed in 0.9s ==============================="
+  },
+  "code_diff": "--- a/.../tooltip.ts\n+++ b/.../tooltip.ts\n@@\n-  return metric.name;\n+  return metric.label ?? metric.name;\n",
+  "worklog": [
+    {
+      "source": "user",
+      "message": "Investigate and fix issue #9005: Chart tooltip shows raw metric name instead of label",
+      "created_at": 1779147708
+    },
+    {
+      "source": "devin",
+      "message": "Reproduced the issue, identified the root cause and opened a PR. Prefer the human label in the tooltip, fall back to the name.",
+      "created_at": 1779148428
+    }
+  ],
+  "latest_message": null,
+  "acus_consumed": 3.4,
+  "pr_followups": [],
+  "pr_comments_synced_at": "2026-05-20T12:12:03.040691+00:00",
+  "pr_state": "closed",
+  "pr_merged": false,
+  "pr_merged_at": null,
+  "error": null
+}

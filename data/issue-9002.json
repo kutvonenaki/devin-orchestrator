@@ -1,0 +1,51 @@
+{
+  "demo": true,
+  "internal_id": "issue-9002",
+  "issue_number": 9002,
+  "issue_url": "https://github.com/kutvonenaki/superset/issues/9002",
+  "issue_title": "Saved dashboard filters not applied on first page load",
+  "issue_created_at": "2026-05-16T05:41:48.661612+00:00",
+  "status": "completed",
+  "devin_session_id": "demo9002",
+  "devin_session_url": "https://app.devin.ai/sessions/demo9002",
+  "start_time": "2026-05-18T10:41:48.661612+00:00",
+  "end_time": "2026-05-18T11:03:48.661612+00:00",
+  "pr_url": "https://github.com/kutvonenaki/superset/pull/9002",
+  "structured_output": {
+    "pr_url": "https://github.com/kutvonenaki/superset/pull/9002",
+    "root_cause_analysis": "Default filter state was set after the initial chart fetch, so the first render ignored it.",
+    "resolution_summary": "Initialize the filter state before the first chart data request.",
+    "files_edited": [
+      "superset-frontend/src/dashboard/reducers/dashboardState.ts"
+    ],
+    "file_changes": [
+      {
+        "path": "superset-frontend/src/dashboard/reducers/dashboardState.ts",
+        "change_summary": "Seed default filters before initial fetch."
+      }
+    ],
+    "test_command_run": "python -m pytest tests/unit_tests -q --noconftest",
+    "test_stdout": "============================= test session starts =============================\ncollected 1 item\n\ntests/unit_tests/...::test_demo PASSED                  [100%]\n\n============================== 1 passed in 0.9s ==============================="
+  },
+  "code_diff": "--- a/superset-frontend/src/dashboard/reducers/dashboardState.ts\n+++ b/...\n@@\n-  // fetch then apply\n+  // apply default filters, then fetch\n",
+  "worklog": [
+    {
+      "source": "user",
+      "message": "Investigate and fix issue #9002: Saved dashboard filters not applied on first page load",
+      "created_at": 1779100908
+    },
+    {
+      "source": "devin",
+      "message": "Reproduced the issue, identified the root cause and opened a PR. Initialize the filter state before the first chart data request.",
+      "created_at": 1779102228
+    }
+  ],
+  "latest_message": null,
+  "acus_consumed": 6.3,
+  "pr_followups": [],
+  "pr_comments_synced_at": "2026-05-20T12:12:04.267554+00:00",
+  "pr_state": "closed",
+  "pr_merged": true,
+  "pr_merged_at": "2026-05-18T13:03:48.661612+00:00",
+  "error": null
+}

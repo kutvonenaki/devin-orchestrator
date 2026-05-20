@@ -1,0 +1,51 @@
+{
+  "demo": true,
+  "internal_id": "issue-9006",
+  "issue_number": 9006,
+  "issue_url": "https://github.com/kutvonenaki/superset/issues/9006",
+  "issue_title": "Very large SQL Lab result export times out intermittently",
+  "issue_created_at": "2026-05-17T09:41:48.661612+00:00",
+  "status": "completed",
+  "devin_session_id": "demo9006",
+  "devin_session_url": "https://app.devin.ai/sessions/demo9006",
+  "start_time": "2026-05-19T14:41:48.661612+00:00",
+  "end_time": "2026-05-19T15:08:48.661612+00:00",
+  "pr_url": "https://github.com/kutvonenaki/superset/pull/9006",
+  "structured_output": {
+    "pr_url": "https://github.com/kutvonenaki/superset/pull/9006",
+    "root_cause_analysis": "The export streamed the entire result set into memory before writing, hitting the request timeout on large queries.",
+    "resolution_summary": "Stream the result set to the CSV writer in chunks instead of materialising it fully in memory.",
+    "files_edited": [
+      "superset/result_set.py"
+    ],
+    "file_changes": [
+      {
+        "path": "superset/result_set.py",
+        "change_summary": "Chunk the CSV export instead of full in-memory materialisation."
+      }
+    ],
+    "test_command_run": "python -m pytest tests/unit_tests -q --noconftest",
+    "test_stdout": "============================= test session starts =============================\ncollected 1 item\n\ntests/unit_tests/...::test_demo PASSED                  [100%]\n\n============================== 1 passed in 0.9s ==============================="
+  },
+  "code_diff": "--- a/superset/result_set.py\n+++ b/superset/result_set.py\n@@\n-    rows = list(cursor.fetchall())\n-    df.to_csv(buf)\n+    for chunk in cursor.fetchmany_iter(10_000):\n+        chunk.to_csv(buf, header=buf.tell() == 0)\n",
+  "worklog": [
+    {
+      "source": "user",
+      "message": "Investigate and fix issue #9006: Very large SQL Lab result export times out intermittently",
+      "created_at": 1779201708
+    },
+    {
+      "source": "devin",
+      "message": "Reproduced the issue, identified the root cause and opened a PR. Stream the result set to the CSV writer in chunks instead of materialising it fully in memory.",
+      "created_at": 1779203328
+    }
+  ],
+  "latest_message": null,
+  "acus_consumed": 7.9,
+  "pr_followups": [],
+  "pr_comments_synced_at": "2026-05-20T12:12:01.974739+00:00",
+  "pr_state": "closed",
+  "pr_merged": true,
+  "pr_merged_at": "2026-05-19T17:08:48.661612+00:00",
+  "error": null
+}

@@ -1,0 +1,51 @@
+{
+  "demo": true,
+  "internal_id": "issue-9003",
+  "issue_number": 9003,
+  "issue_url": "https://github.com/kutvonenaki/superset/issues/9003",
+  "issue_title": "CSV export corrupts decimals in comma-decimal locales",
+  "issue_created_at": "2026-05-16T12:41:48.661612+00:00",
+  "status": "completed",
+  "devin_session_id": "demo9003",
+  "devin_session_url": "https://app.devin.ai/sessions/demo9003",
+  "start_time": "2026-05-18T17:41:48.661612+00:00",
+  "end_time": "2026-05-18T17:59:48.661612+00:00",
+  "pr_url": "https://github.com/kutvonenaki/superset/pull/9003",
+  "structured_output": {
+    "pr_url": "https://github.com/kutvonenaki/superset/pull/9003",
+    "root_cause_analysis": "CSV writer used the locale decimal separator, so values collided with the field delimiter.",
+    "resolution_summary": "Force `.` as the decimal separator in CSV export regardless of server locale.",
+    "files_edited": [
+      "superset/result_set.py"
+    ],
+    "file_changes": [
+      {
+        "path": "superset/result_set.py",
+        "change_summary": "Pin CSV decimal separator to '.'."
+      }
+    ],
+    "test_command_run": "python -m pytest tests/unit_tests -q --noconftest",
+    "test_stdout": "============================= test session starts =============================\ncollected 1 item\n\ntests/unit_tests/...::test_demo PASSED                  [100%]\n\n============================== 1 passed in 0.9s ==============================="
+  },
+  "code_diff": "--- a/superset/result_set.py\n+++ b/superset/result_set.py\n@@\n-    df.to_csv(buf)\n+    df.to_csv(buf, decimal='.')\n",
+  "worklog": [
+    {
+      "source": "user",
+      "message": "Investigate and fix issue #9003: CSV export corrupts decimals in comma-decimal locales",
+      "created_at": 1779126108
+    },
+    {
+      "source": "devin",
+      "message": "Reproduced the issue, identified the root cause and opened a PR. Force `.` as the decimal separator in CSV export regardless of server locale.",
+      "created_at": 1779127188
+    }
+  ],
+  "latest_message": null,
+  "acus_consumed": 5.0,
+  "pr_followups": [],
+  "pr_comments_synced_at": "2026-05-20T12:12:03.606546+00:00",
+  "pr_state": "closed",
+  "pr_merged": true,
+  "pr_merged_at": "2026-05-18T19:59:48.661612+00:00",
+  "error": null
+}

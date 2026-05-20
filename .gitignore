@@ -1,0 +1,23 @@
+# secrets — never commit (the .env.example template is safe to commit)
+.env
+*.env
+!.env.example
+
+# python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# local data — task JSONs ARE committed (demo + a real run) so reviewers
+# see a populated dashboard. No secrets live here (keys are only in .env);
+# runs reference a public fork, so they're safe to share.
+*.db
+*.sqlite3
+.DS_Store
+
+# Claude Code local settings (tool permissions, not for sharing)
+.claude/
+
+# vendored target fork — separate repo, NOT part of our deliverable
+superset/

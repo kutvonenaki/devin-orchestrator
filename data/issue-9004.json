@@ -1,0 +1,51 @@
+{
+  "demo": true,
+  "internal_id": "issue-9004",
+  "issue_number": 9004,
+  "issue_url": "https://github.com/kutvonenaki/superset/issues/9004",
+  "issue_title": "Bar chart y-axis starts at non-zero, exaggerating change",
+  "issue_created_at": "2026-05-17T06:41:48.661612+00:00",
+  "status": "completed",
+  "devin_session_id": "demo9004",
+  "devin_session_url": "https://app.devin.ai/sessions/demo9004",
+  "start_time": "2026-05-19T11:41:48.661612+00:00",
+  "end_time": "2026-05-19T11:57:48.661612+00:00",
+  "pr_url": "https://github.com/kutvonenaki/superset/pull/9004",
+  "structured_output": {
+    "pr_url": "https://github.com/kutvonenaki/superset/pull/9004",
+    "root_cause_analysis": "ECharts y-axis `min` was left to auto, so small deltas looked dramatic.",
+    "resolution_summary": "Default the bar-chart y-axis minimum to 0 (override still available in chart options).",
+    "files_edited": [
+      "superset-frontend/plugins/plugin-chart-echarts/src/Timeseries/transformProps.ts"
+    ],
+    "file_changes": [
+      {
+        "path": "superset-frontend/plugins/plugin-chart-echarts/src/Timeseries/transformProps.ts",
+        "change_summary": "Set yAxis.min = 0 by default for bar charts."
+      }
+    ],
+    "test_command_run": "python -m pytest tests/unit_tests -q --noconftest",
+    "test_stdout": "============================= test session starts =============================\ncollected 1 item\n\ntests/unit_tests/...::test_demo PASSED                  [100%]\n\n============================== 1 passed in 0.9s ==============================="
+  },
+  "code_diff": "--- a/.../transformProps.ts\n+++ b/.../transformProps.ts\n@@\n-  yAxis: { type: 'value' },\n+  yAxis: { type: 'value', min: 0 },\n",
+  "worklog": [
+    {
+      "source": "user",
+      "message": "Investigate and fix issue #9004: Bar chart y-axis starts at non-zero, exaggerating change",
+      "created_at": 1779190908
+    },
+    {
+      "source": "devin",
+      "message": "Reproduced the issue, identified the root cause and opened a PR. Default the bar-chart y-axis minimum to 0 (override still available in chart options).",
+      "created_at": 1779191868
+    }
+  ],
+  "latest_message": null,
+  "acus_consumed": 4.7,
+  "pr_followups": [],
+  "pr_comments_synced_at": "2026-05-20T12:12:02.512487+00:00",
+  "pr_state": "open",
+  "pr_merged": false,
+  "pr_merged_at": null,
+  "error": null
+}

@@ -1,0 +1,51 @@
+{
+  "demo": true,
+  "internal_id": "issue-9001",
+  "issue_number": 9001,
+  "issue_url": "https://github.com/kutvonenaki/superset/issues/9001",
+  "issue_title": "Numeric range filter excludes rows exactly on the boundary",
+  "issue_created_at": "2026-05-15T22:41:48.661612+00:00",
+  "status": "completed",
+  "devin_session_id": "demo9001",
+  "devin_session_url": "https://app.devin.ai/sessions/demo9001",
+  "start_time": "2026-05-18T03:41:48.661612+00:00",
+  "end_time": "2026-05-18T03:55:48.661612+00:00",
+  "pr_url": "https://github.com/kutvonenaki/superset/pull/9001",
+  "structured_output": {
+    "pr_url": "https://github.com/kutvonenaki/superset/pull/9001",
+    "root_cause_analysis": "`utils/filters.py` used strict `<`/`>` instead of inclusive bounds for numeric range filters.",
+    "resolution_summary": "Switched the numeric range filter to inclusive comparisons so boundary values are retained.",
+    "files_edited": [
+      "superset/utils/filters.py"
+    ],
+    "file_changes": [
+      {
+        "path": "superset/utils/filters.py",
+        "change_summary": "Use >= / <= for numeric range bounds."
+      }
+    ],
+    "test_command_run": "python -m pytest tests/unit_tests -q --noconftest",
+    "test_stdout": "============================= test session starts =============================\ncollected 1 item\n\ntests/unit_tests/...::test_demo PASSED                  [100%]\n\n============================== 1 passed in 0.9s ==============================="
+  },
+  "code_diff": "--- a/superset/utils/filters.py\n+++ b/superset/utils/filters.py\n@@\n-    return col > lo and col < hi\n+    return col >= lo and col <= hi\n",
+  "worklog": [
+    {
+      "source": "user",
+      "message": "Investigate and fix issue #9001: Numeric range filter excludes rows exactly on the boundary",
+      "created_at": 1779075708
+    },
+    {
+      "source": "devin",
+      "message": "Reproduced the issue, identified the root cause and opened a PR. Switched the numeric range filter to inclusive comparisons so boundary values are retained.",
+      "created_at": 1779076548
+    }
+  ],
+  "latest_message": null,
+  "acus_consumed": 4.1,
+  "pr_followups": [],
+  "pr_comments_synced_at": "2026-05-20T12:12:04.805571+00:00",
+  "pr_state": "closed",
+  "pr_merged": true,
+  "pr_merged_at": "2026-05-18T05:55:48.661612+00:00",
+  "error": null
+}
