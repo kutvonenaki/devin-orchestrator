@@ -426,7 +426,7 @@ blockquote {
   font-style: italic;
 }
 ;color:#c9d1d9;background-color:#0d1117;background-image:none;" data-marpit-pagination-total="6">
-<h2 id="the-cost-of-backlog">The cost of backlog</h2>
+<h2 id="the-cost-of-issues-backlog">The cost of issues backlog</h2>
 <p><strong>Time solving + context switch.</strong></p>
 <ul>
 <li><strong>For each issue, an engineer must:</strong>
@@ -575,17 +575,36 @@ blockquote {
   font-style: italic;
 }
 ;color:#c9d1d9;background-color:#0d1117;background-image:none;" data-marpit-pagination-total="6">
-<h2 id="demo-chart-shows-inf-when-comparing-to-previous-month">Demo: Chart shows inf when comparing to previous month</h2>
+<h2 id="system-architecture">System Architecture</h2>
+<p><strong>FastAPI app polls inside docker.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Today (demo)</th>
+<th>In production</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Polling every 3 min</td>
+<td>GitHub webhook (instant)</td>
+</tr>
+<tr>
+<td>JSON-file store</td>
+<td>Postgres (multi-replica)</td>
+</tr>
+<tr>
+<td>Token-free public reads</td>
+<td>Service account / app token</td>
+</tr>
+<tr>
+<td>Server-rendered HTML</td>
+<td>Decoupled Next.js frontend</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li><strong>The Workflow</strong>:
-<ul>
-<li><strong>Issue created</strong>: Issue created with a <code>devin</code> label.</li>
-<li><strong>Observe</strong>: System observes github issues.</li>
-<li><strong>Fix</strong>: Devin spins a VM, diagnoses codebase, fixes, and runs tests.</li>
-<li><strong>Communicate</strong>: PR created, explanations, test provided.</li>
-<li><strong>Verify</strong>: Engineer reviews PR and merges it.</li>
-</ul>
-</li>
+<li><strong>Other</strong> structured output schema → root cause, test command, test stdout. Diffs from Github PR</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-background-color="#0d1117" data-color="#c9d1d9" data-theme="gaia" data-style="section {

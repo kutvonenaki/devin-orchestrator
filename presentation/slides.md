@@ -93,7 +93,7 @@ Turning a stale GitHub backlog into reviewed PRs — automatically.
 
 ---
 
-## The cost of backlog
+## The cost of issues backlog
 
 **Time solving + context switch.**
 
@@ -103,16 +103,21 @@ Turning a stale GitHub backlog into reviewed PRs — automatically.
   - Dropping deep work, wasted focus and time.
   - Lowered morale
 
+
 ---
 
-## Demo: Chart shows inf when comparing to previous month
+## System Architecture
 
-- **The Workflow**:
-  - **Issue created**: Issue created with a `devin` label.
-  - **Observe**: System observes github issues.
-  - **Fix**: Devin spins a VM, diagnoses codebase, fixes, and runs tests.
-  - **Communicate**: PR created, explanations, test provided.
-  - **Verify**: Engineer reviews PR and merges it.
+**FastAPI app polls inside docker.**
+
+| Today (demo)              | In production           |
+|---|---|
+| Polling every 3 min       | GitHub webhook (instant) |
+| JSON-file store           | Postgres (multi-replica) |
+| Token-free public reads   | Service account / app token |
+| Server-rendered HTML | Decoupled Next.js frontend|
+
+- **Other** structured output schema → root cause, test command, test stdout. Diffs from Github PR
 
 ---
 

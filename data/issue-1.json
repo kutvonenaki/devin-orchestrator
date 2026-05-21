@@ -61,7 +61,7 @@
       "devin_reply": "Addressed in c2388a2 \u2014 added `.fillna(0)` after the percentage and ratio computations so both NaN and Infinity values are replaced with `0`. Updated the tests to assert `0` instead of `NaN` for zero-denominator rows. All 9 tests (2 new + 7 existing) pass."
     }
   ],
-  "pr_comments_synced_at": "2026-05-20T14:29:49.047449+00:00",
+  "pr_comments_synced_at": "2026-05-21T16:14:27.431454+00:00",
   "pr_state": "open",
   "pr_merged": false,
   "pr_merged_at": null,
