@@ -26,6 +26,11 @@ To trigger a live Devin run with the included demo bug:
 scripts/create_bug2_issue.sh  # creates and labels the issue on the fork
 ```
 
+> Requires the [GitHub CLI](https://cli.github.com) (`gh`) authenticated via
+> `gh auth login` — uses its own keyring, **not** the `.env` `GITHUB_TOKEN`.
+> Only this one-shot human action needs write access; the app itself stays
+> token-free. Install on macOS with `brew install gh`.
+
 The running container polls GitHub every 3 minutes — the issue will be picked
 up automatically and a Devin session starts without any further action.
 Devin typically takes **15–30 minutes** to diagnose, fix, write a test, and
